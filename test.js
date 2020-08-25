@@ -7,7 +7,7 @@ const cookieParser = require("cookie-parser");
 
 app.use(cors());
 app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser());
 const secret = "878yt78vw4ytvenhrtk90jmiudfhevn89";
 
@@ -43,14 +43,16 @@ function newUser(req, res, next){
 
 const login = (req, res) => {
   console.log("GET");
-  const token = jwt.sign({ username: req.body.username }, secret, { expiresIn: 5 });
-  // res.cookie("jwt_access_token", token, {
-  //   // expires: new Date(Date.now() + 300000),
-  //   // secure: true,
-  //   // httpOnly: true,
-  // });
+  console.log(req.body.username)
+  const token = jwt.sign({ username: req.body.username }, secret, { expiresIn: 300000 });
+  console.log(token);
+  res.cookie("jwt_access_token", token, {
+    expires: new Date(Date.now() + 300000),
+    // secure: true,
+    // httpOnly: true,
+  });
   // OR
-  res.set('Set-Cookie', `jwt_token=${token}; Max-Age=500000; HttpOnly; Path=/`);
+  // res.set('Set-Cookie', `jwt_token=${token}; Max-Age=500000; HttpOnly; Path=/`);
   res.end("Success");
 };
 
@@ -66,5 +68,13 @@ app.get("/test", (req, res) => {
   if (!!req.cookies) console.log(req.cookies);
   res.json(req.cookies);
 });
+
+app.get("/user", (req, res)=>{
+  const cookie = req.cookies.jwt_access_token;
+  console.log(cookie);
+  const decoded = jwt.decode(cookie);
+  console.log(decoded)
+  res.send(decoded);
+})
 
 app.listen(6050, () => console.log("Server Up"));
