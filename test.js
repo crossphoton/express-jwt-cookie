@@ -13,7 +13,7 @@ const secret = "878yt78vw4ytvenhrtk90jmiudfhevn89";
 app.get("/", (req, res) => {
   console.log("GET");
   const token = jwt.sign({ username: "Aditya" }, secret, { expiresIn: 5 });
-  res.set('Set-Cookie', `jwt_token=${token}; Max-Age=500000; HttpOnly; Path=/`);
+  res.set("Set-Cookie", `jwt_token=${token}; Max-Age=500000; HttpOnly; Path=/`);
   res.end("Success");
 });
 
