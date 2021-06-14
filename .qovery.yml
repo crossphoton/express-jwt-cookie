@@ -1,0 +1,11 @@
+---
+application:
+  name: "express-jwt-cookie"
+  project: "express"
+  organization: "QoveryCommunity"
+routers:
+- name: "main-express-jwt-cookie"
+  routes:
+  - application_name: "express-jwt-cookie"
+    paths:
+    - "/*"
