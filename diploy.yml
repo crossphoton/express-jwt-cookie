@@ -1,0 +1,7 @@
+name: express-jwt
+build:
+  command: npm install
+  type: command
+run:
+  command: node test.js
+  type: command
