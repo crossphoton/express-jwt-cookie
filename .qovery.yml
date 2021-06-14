@@ -4,8 +4,12 @@ application:
   project: "express"
   organization: "QoveryCommunity"
 routers:
-- name: "main-express-jwt-cookie"
-  routes:
-  - application_name: "express-jwt-cookie"
-    paths:
-    - "/*"
+  - name: "main-express-jwt-cookie"
+    custom_domains:
+      - branch: master
+        domain: qovery.crossphoton.tech
+
+    routes:
+      - application_name: "express-jwt-cookie"
+        paths:
+          - "/*"
