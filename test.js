@@ -14,7 +14,8 @@ app.get("/", (req, res) => {
   console.log("GET");
   const token = jwt.sign({ username: "Aditya" }, secret, { expiresIn: 5 });
   res.set("Set-Cookie", `jwt_token=${token}; Max-Age=500000; HttpOnly; Path=/`);
-  res.end("Success");
+  res.set("Content-type", "text/plain");
+  res.end("Cookie sent successfully");
 });
 
 app.get("/test", (req, res) => {
