@@ -1,3 +1,4 @@
+# This file is for a custom deployments management utility (github:crossphoton/diploy)
 name: express-jwt
 build:
   command: npm install
