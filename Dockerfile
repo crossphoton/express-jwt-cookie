@@ -1,4 +1,4 @@
-FROM node:14
+FROM node:12-alpine
 
 RUN mkdir -p /src/user/express-jwt-cookie
 WORKDIR /src/user/express-jwt-cookie

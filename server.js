@@ -1,16 +1,14 @@
 const express = require("express");
 const app = express();
-const cors = require("cors");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 
-// app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 app.disable('x-powered-by');
 const secret = process.env.JWT_SECRET;
 
-// if(!secret) {console.error("No secret provided for JWT. Exiting...."); process.exit(1);}
+if(!secret) {console.error("No secret provided for JWT. Exiting...."); process.exit(1);}
 
 app.get("/", (req, res) => {
   res.set('Cache-Control', 'public, max-age=31557600');
