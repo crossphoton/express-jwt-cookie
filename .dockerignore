@@ -120,3 +120,6 @@ dist
 
 .github/
 Dockerfile
+
+*.yml
+*.yaml
