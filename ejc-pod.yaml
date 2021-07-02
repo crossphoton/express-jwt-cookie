@@ -1,0 +1,15 @@
+# Run using kubectl apply -f ejc-old.yml
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ejc-pod
+  labels:
+    purpose: ejc
+spec:
+  containers:
+  - name: ejc
+    image: crossphoton/express-jwt-cookie
+    env:
+    - name: JWT_SECRET
+      value: "thisistopsecret"

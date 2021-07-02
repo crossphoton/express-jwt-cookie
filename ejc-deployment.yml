@@ -1,0 +1,37 @@
+# Run using kubectl apply -f ejc-old.yml
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ejc-deployment
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: ejc-deployment
+  template:
+    metadata:
+      labels:
+        app: ejc-deployment
+    spec:
+      containers:
+      - name: ejc
+        image: crossphoton/express-jwt-cookie:latest
+        ports:
+        - containerPort: 80
+        env:
+        - name: JWT_SECRET
+          value: "thisistopsecret"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ejc-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: ejc-deployment
+  ports:
+  - name: grpc
+    port: 80
+    targetPort: 80
